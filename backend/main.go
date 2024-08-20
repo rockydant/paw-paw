@@ -1,24 +1,46 @@
 package main
 
 import (
+	"fmt"
 	"log"
-	"os"
 
-	"github.com/pocketbase/pocketbase"
-	"github.com/pocketbase/pocketbase/apis"
-	"github.com/pocketbase/pocketbase/core"
+	"github.com/gocolly/colly/v2"
 )
 
-func main() {
-	app := pocketbase.New()
+type Pet struct {
+	Image string
+	Name  string
+	Id    string
+}
 
-	// serves static files from the provided public dir (if exists)
-	app.OnBeforeServe().Add(func(e *core.ServeEvent) error {
-		e.Router.GET("/*", apis.StaticDirectoryHandler(os.DirFS("./pb_public"), false))
-		return nil
+func main() {
+	url := "https://sdhumane.org/adopt/available-pets"
+	// Instantiate default collector
+	c := colly.NewCollector(
+	// Visit only domains: hackerspaces.org, wiki.hackerspaces.org
+	//colly.AllowedDomains(url),
+	)
+
+	// On every a element which has href attribute call callback
+	c.OnHTML("div[id=animalGallery]", func(e *colly.HTMLElement) {
+		e.ForEach(".col-md-3 .pet-item", func(_ int, el *colly.HTMLElement) {
+			pet := Pet{
+				Image: el.ChildAttr("div.img-square > img", "src"),
+				Name:  el.ChildText("div.pet-info > span[class=petName]"),
+				Id:    el.ChildText("div.pet-info > span[class=petId]"),
+			}
+
+			log.Println(pet.Name)
+			log.Println(pet.Image)
+			log.Println(pet.Id)
+		})
 	})
 
-	if err := app.Start(); err != nil {
-		log.Fatal(err)
-	}
+	// Before making a request print "Visiting ..."
+	c.OnRequest(func(r *colly.Request) {
+		fmt.Println("Visiting", r.URL.String())
+	})
+
+	// Start scraping on https://hackerspaces.org
+	c.Visit(url)
 }

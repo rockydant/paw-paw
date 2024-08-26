@@ -9,4 +9,4 @@
 
 <slot />
 
-<CarbonAds />
+<!-- <CarbonAds /> -->

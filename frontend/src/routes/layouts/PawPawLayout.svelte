@@ -61,15 +61,18 @@
     {/if}
 
     <NavUl {divClass} {ulClass} {activeUrl} on:click={() => setTimeout(toggle, 1)} nonActiveClass="md:!ps-3 md:!py-2 lg:!ps-0 text-gray-700 hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 dark:text-gray-400 lg:dark:text-white lg:dark:hover:text-primary-700 dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent" activeClass="md:!ps-3 md:!py-2 lg:!ps-0 text-white bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:dark:text-primary-700 dark:bg-primary-600 lg:dark:bg-transparent cursor-default">
-      <NavLi class="lg:px-2 lg:mb-0" href="/">Home</NavLi>
+      <!-- <NavLi class="lg:px-2 lg:mb-0" href="/">Home</NavLi>
       <NavLi class="lg:px-2 lg:mb-0" href="/docs/pages/introduction">Docs</NavLi>
       <NavLi class="lg:px-2 lg:mb-0" href="/docs/components/accordion">Components</NavLi>
       <NavLi class="lg:px-2 lg:mb-0" href="/icons/svelte-4">Icons</NavLi>
       <NavLi class="lg:px-2 lg:mb-0" href="/blocks">Blocks</NavLi>
-      <NavLi class="lg:px-2 lg:mb-0" href="/admin-dashboard">Dashboard</NavLi>
+      <NavLi class="lg:px-2 lg:mb-0" href="/admin-dashboard">Dashboard</NavLi> -->
+      <NavLi class="lg:px-2 lg:mb-0" href="/docs/pages/introduction">Review</NavLi>
+      <NavLi class="lg:px-2 lg:mb-0" href="/docs/pages/introduction">Summary</NavLi>
+      <NavLi class="lg:px-2 lg:mb-0" href="/docs/pages/introduction">Swap</NavLi>
     </NavUl>
 
-    <div class="flex items-center ms-auto">
+    <!-- <div class="flex items-center ms-auto">
       <ToolbarLink class="hidden sm:inline-block dark:hover:text-white hover:text-gray-900 focus:ring-0" name="View on GitHub" href="https://github.com/themesberg/flowbite-svelte">
         <GitHub />
       </ToolbarLink>
@@ -81,16 +84,16 @@
       </ToolbarLink>
       <DarkMode size="lg" class="inline-block dark:hover:text-white hover:text-gray-900" />
       <Tooltip class="dark:bg-gray-900" placement="bottom-end">Toggle dark mode</Tooltip>
-    </div>
-    <a href="https://www.npmjs.com/package/flowbite-svelte" class="hidden sm:block">
+    </div> -->
+    <!-- <a href="https://www.npmjs.com/package/flowbite-svelte" class="hidden sm:block">
       <DocBadge large class="ms-2 xl:ms-6 hover:bg-primary-600 hover:text-white dark:hover:bg-primary-800 dark:hover:text-white">
         v{version}
       </DocBadge>
-    </a>
-    <ToolbarLink class="hidden xl:inline-block dark:hover:text-white hover:text-gray-900 focus:ring-0" name="Subscribe to YouTube channel" href="https://www.youtube.com/channel/UC_Ms4V2kYDsh7F_CSsHyQ6A">
+    </a> -->
+    <ToolbarLink class="hidden xl:inline-block dark:hover:text-white hover:text-gray-900 focus:ring-0" name="Login" href="/admin-dashboard/authentication/sign-in">
       <UserCircleSolid />
     </ToolbarLink>
-    <NavHamburger on:click={toggle} class="ms-3 m-0 md:block lg:hidden {isHomePage ? '' : 'hidden'}" />
+    <!-- <NavHamburger on:click={toggle} class="ms-3 m-0 md:block lg:hidden {isHomePage ? '' : 'hidden'}" /> -->
   </Navbar>
 </header>
 

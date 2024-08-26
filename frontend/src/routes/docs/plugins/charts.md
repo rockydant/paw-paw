@@ -1,7 +1,7 @@
 ---
 layout: componentLayout
-title: Svelte Charts - Flowbite
-breadcrumb_title: Svelte Charts
+title: Paw Paw
+breadcrumb_title: Paw Paw
 component_title: Charts
 dir: components
 description: Use the chart and graph components from Flowbite-Svelte built with Tailwind CSS and ApexCharts to choose from line, area, bar, column, pie, and radial charts

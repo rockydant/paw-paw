@@ -4,13 +4,14 @@
   import Tooltip from '$lib/tooltip/Tooltip.svelte';
   import { onMount, setContext } from 'svelte';
   import { writable, type Writable } from 'svelte/store';
-  
+
   import DocBadge from '../utils/DocBadge.svelte';
   import Discord from '../utils/icons/Discord.svelte';
   import GitHub from '../utils/icons/GitHub.svelte';
   import YouTube from '../utils/icons/YouTube.svelte';
   import ToolbarLink from '../utils/ToolbarLink.svelte';
   import AlgoliaSearch from '../utils/AlgoliaSearch.svelte';
+  import { UserCircleSolid } from 'flowbite-svelte-icons';
 
   let isHomePage: boolean;
   $: isHomePage = $page.route.id === '/';
@@ -22,8 +23,8 @@
 
   const drawerHiddenStore: Writable<boolean> = writable<boolean>(true);
   setContext('drawer', drawerHiddenStore);
-  
-  setContext('testC', 'test for textContext')
+
+  setContext('testC', 'test for textContext');
 
   const toggleDrawer = () => {
     drawerHiddenStore.update((state) => !state);
@@ -48,7 +49,7 @@
     </span>
     <NavBrand href="/">
       <img src={logo} class="me-3 h-8" alt="Flowbite Svelte Logo" />
-      <span class="self-center whitespace-nowrap text-2xl font-semibold text-gray-900 dark:text-white"> Flowbite Svelte </span>
+      <span class="self-center whitespace-nowrap text-2xl font-semibold text-gray-900 dark:text-white"> Paw-Paw </span>
     </NavBrand>
 
     {#if !isHomePage}
@@ -86,7 +87,9 @@
         v{version}
       </DocBadge>
     </a>
-
+    <ToolbarLink class="hidden xl:inline-block dark:hover:text-white hover:text-gray-900 focus:ring-0" name="Subscribe to YouTube channel" href="https://www.youtube.com/channel/UC_Ms4V2kYDsh7F_CSsHyQ6A">
+      <UserCircleSolid />
+    </ToolbarLink>
     <NavHamburger on:click={toggle} class="ms-3 m-0 md:block lg:hidden {isHomePage ? '' : 'hidden'}" />
   </Navbar>
 </header>

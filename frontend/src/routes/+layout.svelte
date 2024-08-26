@@ -4,7 +4,8 @@
   import CarbonAds from './utils/CarbonAds.svelte';
   export let data;
 </script>
-<FathomAnalytics FATHOM_ID="{data.FATHOM_ID}"/>
+
+<!-- <FathomAnalytics FATHOM_ID="{data.FATHOM_ID}"/> -->
 
 <slot />
 

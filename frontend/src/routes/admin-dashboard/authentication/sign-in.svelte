@@ -2,6 +2,8 @@
   import { Label, Input } from 'flowbite-svelte';
   import SignIn from '../utils/authentication/SignIn.svelte';
   import MetaTag from '../utils/MetaTag.svelte';
+  import PocketBase from 'pocketbase';
+
   let title = 'Sign in to platform';
   let site = {
     name: 'Paw-Paw',
@@ -17,7 +19,9 @@
   let registerLink = 'sign-up';
   let createAccountTitle = 'Create account';
 
-  const onSubmit = (e: Event) => {
+  const pb = new PocketBase('http://localhost:8090');
+
+  const onSubmit = async (e: Event) => {
     const formData = new FormData(e.target as HTMLFormElement);
 
     const data: Record<string, string | File> = {};
@@ -25,6 +29,14 @@
       const [key, value] = field;
       data[key] = value;
     }
+
+    //const authData = await pb.admins.authWithPassword(data.email, data['password']);
+
+    // after the above you can also access the auth data from the authStore
+    console.log(pb.authStore.isValid);
+    console.log(pb.authStore.token);
+    console.log(authData.token);
+
     console.log(data);
   };
 

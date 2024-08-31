@@ -17,6 +17,9 @@ importers:
       flowbite:
         specifier: ^2.5.1
         version: 2.5.1(rollup@4.20.0)
+      pocketbase:
+        specifier: ^0.21.5
+        version: 0.21.5
       tailwind-merge:
         specifier: ^2.5.2
         version: 2.5.2
@@ -1918,6 +1921,9 @@ packages:
     resolution: {integrity: sha512-XYJ5WvfefWONh1uPAUAi0H2xXV5S3vrtcnXe6uAOgdGi3aSpqOSXX08IAjXW34xitfuOJsvXU5anXZxPSEQiJw==}
     engines: {node: '>=18'}
     hasBin: true
+
+  pocketbase@0.21.5:
+    resolution: {integrity: sha512-bnI/uinnQps+ElSlzxkc4yvwuSFfKcoszDtXH/4QT2FhGq2mJVUvDlxn+rjRXVntUjPfmMG5LEPZ1eGqV6ssog==}
 
   postcss-import@15.1.0:
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}
@@ -4617,6 +4623,8 @@ snapshots:
       playwright-core: 1.46.0
     optionalDependencies:
       fsevents: 2.3.2
+
+  pocketbase@0.21.5: {}
 
   postcss-import@15.1.0(postcss@8.4.41):
     dependencies:

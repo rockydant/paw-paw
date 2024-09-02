@@ -17,6 +17,9 @@ importers:
       '@floating-ui/dom':
         specifier: ^1.6.10
         version: 1.6.10
+      pocketbase:
+        specifier: ^0.21.5
+        version: 0.21.5
       svelte-meta-tags:
         specifier: ^3.1.4
         version: 3.1.4(svelte@4.2.19)(typescript@5.5.4)
@@ -1400,6 +1403,9 @@ packages:
     resolution: {integrity: sha512-oPcr1yqoXLCkgKtD5eNUPLiN40rYEM39odNpIb6VE6S7/15gJmA1NzVv6zJYusV0e7tzvkU/utBFNa/Kpxmwng==}
     engines: {node: '>=18'}
     hasBin: true
+
+  pocketbase@0.21.5:
+    resolution: {integrity: sha512-bnI/uinnQps+ElSlzxkc4yvwuSFfKcoszDtXH/4QT2FhGq2mJVUvDlxn+rjRXVntUjPfmMG5LEPZ1eGqV6ssog==}
 
   postcss-import@15.1.0:
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}
@@ -3259,6 +3265,8 @@ snapshots:
       playwright-core: 1.46.1
     optionalDependencies:
       fsevents: 2.3.2
+
+  pocketbase@0.21.5: {}
 
   postcss-import@15.1.0(postcss@8.4.43):
     dependencies:

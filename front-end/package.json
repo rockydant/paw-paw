@@ -45,6 +45,7 @@
 		"@docsearch/css": "^3.6.1",
 		"@docsearch/js": "^3.6.1",
 		"@floating-ui/dom": "^1.6.10",
+		"pocketbase": "^0.21.5",
 		"svelte-meta-tags": "^3.1.4",
 		"tailwind-merge": "^2.5.2"
 	}

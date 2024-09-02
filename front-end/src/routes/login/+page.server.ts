@@ -14,7 +14,7 @@ export const actions: Actions = {
 
 			const token = locals.pb.authStore.token;
 			if (!token || typeof token !== 'string') {
-				throw redirect(303, '/auth');
+				throw redirect(303, '/login');
 			}
 
 			cookies.set('pb_auth', JSON.stringify({ token: token }), { path: '/' });
@@ -23,6 +23,6 @@ export const actions: Actions = {
 			throw e;
 		}
 
-		//redirect(303, '/');
+		redirect(303, '/');
 	}
-};
+} satisfies Actions;

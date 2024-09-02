@@ -1,7 +1,8 @@
 import { createInstance } from '$lib/pocketbase/pocketbase';
-import type { Handle } from '@sveltejs/kit';
+import { redirect, type Handle } from '@sveltejs/kit';
+import { sequence } from '@sveltejs/kit/hooks';
 
-export const handle: Handle = async ({ event, resolve }) => {
+export const authentication: Handle = async ({ event, resolve }) => {
 	const pb = createInstance();
 
 	// load the store data from the request cookie string
@@ -12,6 +13,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 			await pb.collection('users').authRefresh();
 		}
 	} catch (_) {
+        console.log(_)
 		// clear the auth store on failed refresh
 		pb.authStore.clear();
 	}
@@ -26,3 +28,23 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	return response;
 };
+
+const unprotectedPrefix = ['/login'];
+export const authorization: Handle = async ({ event, resolve }) => {
+	// Protect any routes under /authenticated
+	if (
+		!unprotectedPrefix.some((path) => event.url.pathname.startsWith(path)) &&
+		event.url.pathname !== '/'
+	) {
+		const loggedIn = await event.locals.pb.authStore;
+		if (!loggedIn) {
+			throw redirect(303, '/login');
+		}
+	}
+
+	// If the request is still here, just proceed as normally
+	const result = await resolve(event);
+	return result;
+};
+
+export const handle = sequence(authentication, authorization);

@@ -10,6 +10,8 @@ declare global {
 		interface Locals {
 			pb: import('pocketbase').default;
 			user: import('pocketbase').default['authStore']['model'];
+			id: string;
+			email: string;
 		}
 	}
 }

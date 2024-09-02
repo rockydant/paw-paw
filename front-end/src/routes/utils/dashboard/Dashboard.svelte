@@ -63,14 +63,6 @@
 				</p>
 				<Change size="sm" value={-3.4} since="Since last month" class="w-full" />
 			</div>
-			<DarkChart
-				configFunc={(d) => {
-					const x = users(d);
-					x.plotOptions.bar.horizontal = true;
-					return x;
-				}}
-				class="w-full"
-			/>
 		</Card>
 	</div>
 	<div class="grid grid-cols-1 gap-4 xl:grid-cols-2">

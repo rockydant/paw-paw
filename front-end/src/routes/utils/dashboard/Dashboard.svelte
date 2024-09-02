@@ -55,7 +55,7 @@
 				</p>
 				<Change size="sm" value={12.5} since="Since last month" />
 			</div>
-			<Chart options={thickbars} class="w-full" />
+			<!-- <Chart options={thickbars} class="w-full" /> -->
 		</Card>
 		<Card horizontal class="items-center justify-between" size="xl">
 			<div class="w-full">

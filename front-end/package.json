@@ -40,5 +40,12 @@
 		"vite": "^5.0.3",
 		"vitest": "^2.0.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@docsearch/css": "^3.6.1",
+		"@docsearch/js": "^3.6.1",
+		"@floating-ui/dom": "^1.6.10",
+		"svelte-meta-tags": "^3.1.4",
+		"tailwind-merge": "^2.5.2"
+	}
 }

@@ -20,7 +20,7 @@
 		</div>
 		<More title="Full report" href="#top" />
 	</div>
-	<Chart options={options(dark)}></Chart>
+	<!-- <Chart options={options(dark)}></Chart> -->
 	<div class="mb-4 flex items-center justify-between pt-4 sm:pt-6 lg:justify-evenly">
 		<SmallPanel title="Desktop" subtitle="234k" change={4}>
 			<DesktopPcOutline slot="icon" size="xl" class="mb-1" />

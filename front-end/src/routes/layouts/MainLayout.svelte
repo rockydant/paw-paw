@@ -17,10 +17,11 @@
 	import NavBrand from '$lib/navbar/NavBrand.svelte';
 	import NavUl from '$lib/navbar/NavUl.svelte';
 	import NavLi from '$lib/navbar/NavLi.svelte';
+	import { UserCircleOutline } from 'flowbite-svelte-icons';
 
 	let isHomePage: boolean;
 	$: isHomePage = $page.route.id === '/';
-	const version = '__VERSION__';
+	const version = '0.0.1';
 	$: activeUrl = $page.url.pathname;
 	let logo = '/images/flowbite-svelte-icon-logo.svg';
 	let divClass = 'w-full ms-auto lg:block lg:w-auto order-1 lg:order-none';
@@ -115,18 +116,16 @@
 			>
 				<YouTube />
 			</ToolbarLink>
+			<ToolbarLink
+				class="hidden hover:text-gray-900 focus:ring-0 xl:inline-block dark:hover:text-white"
+				name="Login"
+				href="/login"
+			>
+				<UserCircleOutline />
+			</ToolbarLink>
 			<DarkMode size="lg" class="inline-block hover:text-gray-900 dark:hover:text-white" />
 			<Tooltip class="dark:bg-gray-900" placement="bottom-end">Toggle dark mode</Tooltip>
 		</div>
-		<a href="https://www.npmjs.com/package/flowbite-svelte" class="hidden sm:block">
-			<DocBadge
-				large
-				class="hover:bg-primary-600 dark:hover:bg-primary-800 ms-2 hover:text-white xl:ms-6 dark:hover:text-white"
-			>
-				v{version}
-			</DocBadge>
-		</a>
-
 		<NavHamburger
 			on:click={toggle}
 			class="m-0 ms-3 md:block lg:hidden {isHomePage ? '' : 'hidden'}"

@@ -1,6 +1,8 @@
 import { fail, redirect } from '@sveltejs/kit';
 import type { ClientResponseError } from 'pocketbase';
 import type { PageServerLoad } from './$types';
+import PocketBase from 'pocketbase';
+import { createInstance } from '$lib/pocketbase/pocketbase';
 
 // export const load = (async ({ locals }) => {
 // 	// if (locals.pb.authStore.model) {
@@ -34,6 +36,9 @@ export const actions = {
 		throw redirect(303, '/dashboard');
 	},
 	login: async ({ locals, request }) => {
+		const pb = createInstance();
+		locals.pb = pb;
+
 		console.log('action called');
 		const data = await request.formData();
 		const email = data.get('email');
@@ -47,13 +52,14 @@ export const actions = {
 
 		try {
 			await locals.pb.collection('users').authWithPassword(email.toString(), password.toString());
+			locals.user = locals.pb.authStore.model;
 		} catch (error) {
 			const errorObj = error as ClientResponseError;
 			console.log(errorObj);
 			return fail(500, { fail: true, message: errorObj.originalError });
 		}
 
-		throw redirect(303, '/dashboard');
+		throw redirect(303, '/home');
 	},
 	reset: async ({ locals, request }) => {
 		const data = await request.formData();

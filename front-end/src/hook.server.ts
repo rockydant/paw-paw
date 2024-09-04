@@ -1,42 +1,43 @@
-import { createInstance } from '$lib/pocketbase/pocketbase';
+import PocketBase from 'pocketbase';
+import { env } from '$env/dynamic/private';
 import { redirect, type Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 
 export const authentication: Handle = async ({ event, resolve }) => {
-	const pb = createInstance();
+	event.locals.pb = new PocketBase(env.PB_URL);
 
 	// load the store data from the request cookie string
-	pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
+	event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
+
 	try {
 		// get an up-to-date auth store state by verifying and refreshing the loaded auth model (if any)
-		if (pb.authStore.isValid) {
-			await pb.collection('users').authRefresh();
-		}
+		// eslint-disable-next-line @typescript-eslint/no-unused-expressions
+		event.locals.pb.authStore.isValid && (await event.locals.pb.collection('users').authRefresh());
 	} catch (_) {
-        console.log(_)
 		// clear the auth store on failed refresh
-		pb.authStore.clear();
+		console.log(_);
+		event.locals.pb.authStore.clear();
 	}
-
-	event.locals.pb = pb;
-	event.locals.user = pb.authStore.model;
 
 	const response = await resolve(event);
 
 	// send back the default 'pb_auth' cookie to the client with the latest store state
-	response.headers.set('set-cookie', pb.authStore.exportToCookie({ httpOnly: false }));
+	response.headers.append(
+		'set-cookie',
+		event.locals.pb.authStore.exportToCookie({ sameSite: 'Lax', httpOnly: false })
+	);
 
 	return response;
 };
 
-const unprotectedPrefix = ['/login'];
+const unprotectedPrefix = ['/login', '/register', '/auth'];
 export const authorization: Handle = async ({ event, resolve }) => {
 	// Protect any routes under /authenticated
 	if (
 		!unprotectedPrefix.some((path) => event.url.pathname.startsWith(path)) &&
 		event.url.pathname !== '/'
 	) {
-		const loggedIn = await event.locals.pb.authStore;
+		const loggedIn = await event.locals.pb.authStore.model;
 		if (!loggedIn) {
 			throw redirect(303, '/login');
 		}

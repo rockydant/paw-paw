@@ -10,7 +10,7 @@
 			Flowbite
 		</svelte:fragment>
 		<div class="space-y-4 p-6 sm:p-8 md:space-y-6">
-			<form class="flex flex-col space-y-6" action="/">
+			<form class="flex flex-col space-y-6" action="?/login" method="post">
 				<h3 class="p-0 text-xl font-medium text-gray-900 dark:text-white">Change Password</h3>
 				<Label class="space-y-2">
 					<span>Your email</span>

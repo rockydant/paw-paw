@@ -1,7 +1,7 @@
 <script>
 	import { imagesPath } from '../../utils/variables';
 	import { Avatar, Button, Card, Heading } from 'flowbite-svelte';
-	import Users from '../../data/users.json';
+	import Users from '../data/users.json';
 </script>
 
 <Card size="xl">
